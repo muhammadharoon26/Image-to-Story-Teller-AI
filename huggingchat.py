@@ -26,18 +26,9 @@ class HuggingChatScraperBot:
         except Exception as e:
             print("Error in Driver: ",e)
 
-    def prosecutor(self, scenario):
+    def prosecutor(self, prompt):
         self.driver.get("https://huggingface.co/chat/")
-        self.prompt = """
-        You are a story teller.
-        Please generate a short story based on a simple narrative, the story should not be more than 200 words.
-
-        Following are given two separate contexts, choose either one or maybe both to construct a perfect story.
-
-        CONTEXT 1: {}
-        CONTEXT 2: {}
-        STORY:
-        """.format(scenario[0],scenario[1])
+        self.prompt = prompt
         print("Prompt: {}".format(self.prompt))
 
         self.enter_prompt()
@@ -45,6 +36,8 @@ class HuggingChatScraperBot:
         text_response = self.get_response()
 
         self.response_list.extend([self.prompt, text_response, self.prompt+text_response])
+
+        self.driver.quit()
 
         return self.response_list
 
