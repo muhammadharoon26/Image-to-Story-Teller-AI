@@ -3,6 +3,7 @@ from fastapi import FastAPI, File, UploadFile, BackgroundTasks, Request
 from fastapi.responses import FileResponse, JSONResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from Image2Movie import ImageToStory
+import uvicorn
 import asyncio
 import os
 import uuid
@@ -21,7 +22,7 @@ async def delete_folder_after_delay(folder_path: str, video_path: str, delay_sec
     shutil.rmtree(folder_path)
     # Remove Video file
     os.remove(video_path)
-    print("Deleted Following Files:\n   Folder: {}\n    File: {}".format(folder_path, video_path))
+    print("Deleted Following Files:\n    Folder: {}\n    File: {}".format(folder_path, video_path))
 
 @app.get("/")
 def read_root():
@@ -90,28 +91,5 @@ def get_video(user_id: str):
     """
     return HTMLResponse(content=html_content)
 
-# def save_upload_file(upload_file: UploadFile, destination: Path) -> None:
-#     try:
-#         with destination.open("wb") as buffer:
-#             shutil.copyfileobj(upload_file.file, buffer)
-#     finally:
-#         upload_file.file.close()
-
-
-# def save_upload_file_tmp(upload_file: UploadFile) -> Path:
-#     try:
-#         suffix = Path(upload_file.filename).suffix
-#         with NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
-#             shutil.copyfileobj(upload_file.file, tmp)
-#             tmp_path = Path(tmp.name)
-#     finally:
-#         upload_file.file.close()
-#     return tmp_path
-
-
-# def handle_upload_file(upload_file: UploadFile, handler: Callable[[Path], None]) -> None:
-#     tmp_path = save_upload_file_tmp(upload_file)
-#     try:
-#         handler(tmp_path)  # Do something with the saved temp file
-#     finally:
-#         tmp_path.unlink()  # Delete the temp file
+if __name__ == '__main__':
+    uvicorn.run(app, port=8000, host="0.0.0.0")
