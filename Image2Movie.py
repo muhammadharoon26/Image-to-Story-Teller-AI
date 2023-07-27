@@ -22,9 +22,9 @@ class ImageToStory:
         self.story = ""
         self.prompt = ""
 
-    def driver(self, img_url, export_url="export"):
+    def driver(self, img_url, export_url="export", export_name="video"):
         # Calll a Directory Handler
-        self.directory_handler(export_url)
+        # self.directory_handler(export_url)
 
         # Image Scenario Captioning
         self.scenario = [self.img2text_blip(img_url), self.img2text_coco(img_url)]
@@ -49,7 +49,7 @@ class ImageToStory:
         audio_mp3_bytes = self.text2speech(self.story)        
 
         # Compile all of it into a movie clip
-        self.convert2movie(img_url, audio_mp3_bytes, export_url)
+        return self.convert2movie(img_url, audio_mp3_bytes, export_url, export_name)
 
     def directory_handler(self, folder_path):
         # Check if the folder exists
@@ -90,9 +90,17 @@ class ImageToStory:
 
     # LLM
     def generate_story(self, prompt):
-        print("Hugging Bot is Waking Up.........................")
-        agent = HuggingChatScraperBot(True)
-        response = agent.prosecutor(prompt=prompt)
+        i=1
+        while True:
+            try:
+                print("Hugging Bot is Waking Up.........................")
+                agent = HuggingChatScraperBot(True)
+                response = agent.prosecutor(prompt=prompt)
+                break
+            except Exception as e:
+                print("[{}]Hugging Bot [Error]:{}\n[{}]Hugging Bot [Active]: Activating Hugging Bot".format(i,str(e).split('\n')[0],i))
+            i+=1
+
         print(response[2])
         return response[1]
     
@@ -169,7 +177,7 @@ class ImageToStory:
 
             return image_array
 
-    def convert2movie(self, image_path, audio_mp3_bytes, output_path):
+    def convert2movie(self, image_path, audio_mp3_bytes, output_path, export_name="video"):
         print("Compiling into Movie.............")
 
         # Resize the image to 1080x1920
@@ -196,11 +204,14 @@ class ImageToStory:
         video_clip = image_clip.set_audio(audio_clip)
 
         # Write the final video to the output path
-        video_clip.write_videofile(output_path+"/video.mp4", codec='libx264', audio_codec='aac', fps=24)
+        export_video_path = output_path+"/{}.mp4".format(export_name)
+        video_clip.write_videofile(export_video_path, codec='libx264', audio_codec='aac', fps=24)
 
         # Delete the temporary file after use
         temp_file.close()
         os.remove(temp_file_path)
+
+        return export_video_path
 
     def generate_story_with_ChatGPT(self, scenario):
         template = """

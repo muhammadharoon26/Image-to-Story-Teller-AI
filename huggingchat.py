@@ -1,3 +1,4 @@
+import chromedriver_binary  # Adds chromedriver binary to path
 import undetected_chromedriver as uc
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait  #..............
@@ -18,9 +19,13 @@ class HuggingChatScraperBot:
     def gen_driver(self):
         try:
             chrome_options = uc.ChromeOptions()
+            # chrome_options.binary_location = '/opt/headless-chromium'
             if self.headless_mode:
                 # chrome_options.headless = True
                 chrome_options.add_argument('--headless=new')
+            chrome_options.add_argument('--no-sandbox')
+            chrome_options.add_argument('--disable-dev-shm-usage')
+            # driver = uc.Chrome(driver_executable_path="/chromedrives/chromedriver.exe",options=chrome_options)
             driver = uc.Chrome(options=chrome_options)
             return driver
         except Exception as e:
@@ -65,6 +70,8 @@ class HuggingChatScraperBot:
     def wait_manager(self, identifier, t, mode=By.XPATH):
         i = 1
         while True:
+            if i > 10:
+                raise Exception("HuggingBot Stuck in Wait Loop!")
             try:
                 # WebDriverWait(self.driver, t).until(EC.visibility_of_element_located((By.CLASS_NAME, identifier)))
                 element = self.driver.find_element(mode, identifier)
