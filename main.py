@@ -14,6 +14,15 @@ EXPORTDIR = "client"
  
 app = FastAPI()
 
+def directory_handler(folder_path):
+        # Check if the folder exists
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
+            print(f"Folder created: {folder_path}")
+        else:
+            print(f"Folder already exists: {folder_path}")
+
+directory_handler("export")
 app.mount("/export", StaticFiles(directory="export"), name="export")
 
 async def delete_folder_after_delay(folder_path: str, video_path: str, delay_seconds: int):
@@ -41,11 +50,7 @@ async def upload_image(request: Request, background_tasks: BackgroundTasks, imag
         user_folder_path = EXPORTDIR + "/" + user_folder_name
         uploaded_path = user_folder_path + "/{}.{}".format(str(uuid.uuid4()), image.filename.split(".")[-1])
 
-        if not os.path.exists(user_folder_path):
-            os.makedirs(user_folder_path)
-            print(f"Folder created: {user_folder_path}")
-        else:
-            print(f"Folder already exists: {user_folder_path}")
+        directory_handler(user_folder_path)
 
         # Save the uploaded image to a specific location
         with open(uploaded_path, "wb") as f:

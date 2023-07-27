@@ -11,6 +11,7 @@ import requests
 import tempfile
 import os
 import io
+import shutil
 
 
 load_dotenv(find_dotenv())
@@ -24,7 +25,7 @@ class ImageToStory:
 
     def driver(self, img_url, export_url="export", export_name="video"):
         # Calll a Directory Handler
-        # self.directory_handler(export_url)
+        self.directory_handler(export_url)
 
         # Image Scenario Captioning
         self.scenario = [self.img2text_blip(img_url), self.img2text_coco(img_url)]
@@ -53,22 +54,13 @@ class ImageToStory:
 
     def directory_handler(self, folder_path):
         # Check if the folder exists
-        if os.path.exists(folder_path):
-            # If it exists, delete it
+        if not os.path.exists(folder_path):
+            # Create a new folder
             try:
-                os.rmdir(folder_path)  # Remove the folder (only works if it's empty)
+                os.makedirs(folder_path)
+                print(f"Created new folder: {folder_path}")
             except OSError:
-                # If the folder is not empty, remove it with all its contents
-                import shutil
-                shutil.rmtree(folder_path)
-            print(f"Deleted existing folder: {folder_path}")
-
-        # Create a new folder
-        try:
-            os.makedirs(folder_path)
-            print(f"Created new folder: {folder_path}")
-        except OSError:
-            print(f"Failed to create the folder: {folder_path}")
+                print(f"Failed to create the folder: {folder_path}")
     
     def img2text_blip(self, img_url):
         print("Converting Image to Text [BLIP]")
