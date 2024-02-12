@@ -1,85 +1,120 @@
 import google.generativeai as genai
-import google.ai.generativelanguage as glm
-from chromadb import Documents, EmbeddingFunction, Embeddings
-import chromadb
-import numpy as np
-import pandas as pd
-import pathlib
-import textwrap
+# import google.ai.generativelanguage as glm
+import time
+import json
 from dotenv import load_dotenv, find_dotenv
 
 # Setting up environment variables stored in .env file
 load_dotenv(find_dotenv())
 genai.configure()
 
-class GeminiEmbeddingFunction(EmbeddingFunction):
-    def __call__(self, input: Documents) -> Embeddings:
-        model = 'models/embedding-001'
-        title = "Custom query"
-        return genai.embed_content(model=model,
-                                    content=input,
-                                    task_type="retrieval_document",
-                                    title=title)["embedding"]
-
-class GeminiChatbot:
+class GeminiProductions:
     def __init__(self) -> None:
-        self.model = genai.GenerativeModel('gemini-pro')
-        self.chat = self.model.start_chat(history=[])
-        self.ch_client = chromadb.PersistentClient(path="Vectordb/")
-        self.db = self.ch_client.get_collection(name="lululemon_products_database", embedding_function=GeminiEmbeddingFunction())
+        self.generation_config = genai.types.GenerationConfig(
+            # Only one candidate for now.
+            candidate_count=1,
+            # stop_sequences=['x'],
+            max_output_tokens=2000,
+            temperature=1.0
+        )
+        self.safety_settings = {
+            'HARASSMENT':'block_none',
+            'HATE_SPEECH':'block_none',
+            'SEXUAL':'block_none',
+            'DANGEROUS':'block_none',
+        }
+        self.story_prompt = "You are a Story Teller. You will be given a context and your job will be to generate a 200 word story. Story should be creative, humourous, engaging, interesting and it should have epic plot twists.\nCONTEXT:\n"
+        self.screenwriter_prompt = """You are a movie producer. You will be given a story and your job is to convert that story into screenwriting. The screenwriting should be in JSON format and should follow the exact format as specified.
+SCREENWRITING JSON FORMAT:
+{
+  "title": "Movie Title",
+  "logline": "A brief summary of the movie's plot.",
+  "screenplay": [
+    {
+      "scene_number": 1,
+      "location": "INT. HOUSE - DAY",
+      "description": "A brief description of the scene's setting and action.",
+      "narrator_script": "A script that narrator will narrate during the scene.",
+      "scene_details": "Comma-separated tags that visualizes each and every detail of this scene. Also contains story context leading to this scene in detail.",
+      "note": "Director's or writer's note about this scene."
+    },
+    {
+      "scene_number": 2,
+      "location": "EXT. PARK - DAY",
+      "description": "Description of the setting and what happens in the scene.",
+      "narrator_script": "A script that narrator will narrate during the scene.",
+      "scene_details": "Comma-separated tags that visualizes each and every detail of this scene. Also contains story context leading to this scene in detail.",
+      "note": "Director's or writer's note about this scene."
+    }
+  ]
+}
 
-    def get_relevant_document(self, query):
-        # passage = db.query(query_texts=[query], n_results=3)['documents'][0][0]
-        passage = self.db.query(query_texts=[query], n_results=3)['documents'][0]
-        return passage
-    
-    def make_prompt(self, query, relevant_passage):
-        # escaped = relevant_passage.replace("'", "").replace('"', "").replace("\n", " ")
-        prompt = ("""
-        You are a Lululemon Product Recomendation Chatbot on Lululemon's Website and you will recommend products using text from the reference passage included below. \
-        Your job is to help customers make purchase decisions for products at Lululemon's website. \
-        PASSAGE will constantly give product recomendations but it's your duty to only recommend the product when needed. \
-        You must first ask the customer their gender and then recommend the product depending on their interests and tastes. \
-        Product recommendations must include the details like product's title, colors available, price, and a URL link to the product page. \
-        Make the responses concise, engaging, and interesting. \
-        Only fetch the product information from reference passage, if no relative information is found then simply say "Currently Lululemon does not have such products in the inventory".
-        Donot overwhelm the customer with alot of recommendations. \
-        QUESTION: '{query}'
-        PASSAGE: '{relevant_passage}'
+STORY:
 
-            ANSWER:
-        """).format(query=query, relevant_passage=relevant_passage)
+"""
+        self.scene_artist_prompt = """You are a scene artist for a movie. You will be given a screenwriting in JSON format, your job is to understand the details of each scene and describe the visuals in scenes. Your response should be in JSON format as specified.
+SCENE DETAILS JSON FORMAT:
+{
+    1: "Comma separated tags representing scene 1",
+    2: "Comma separated tags representing scene 2",
+    3: "Comma separated tags representing scene 3",
+}
 
+SCREENWRITING JSON:
 
-        return prompt
+"""
+        self.production = {
+            "story_prompt": None,
+            "generated_story": None,
+            "screenwriter_prompt": None,
+            "generated_screenwriting": None,
+            "screenwriting_json": None,
+        }
+        self.model = genai.GenerativeModel('gemini-pro', safety_settings=self.safety_settings, generation_config=self.generation_config)
 
-    def send_message(self, querry, verbose=False):
-        ref_doc = self.get_relevant_document(querry)
-        ref_doc_prompt = ""
-        for i in ref_doc:
-            ref_doc_prompt += str(i).replace("\\n","")
-            print(ref_doc_prompt)
-        prompt = self.make_prompt(querry, ref_doc_prompt)
-        if verbose == True:
-            print(prompt)
-        return self.chat.send_message(prompt)
-    
-    def chatbot(self):
-        response = self.send_message("Who are you?", verbose=True)
-        print("Gemini: ", response.text)
-        while True:
-            user_q = input("You: ")
-            if user_q == "quit":
-                break
-            response = self.send_message(user_q, verbose=True)
-            print("Gemini: ", response.text)
+    def producer(self, context):
+        print("[Producer] Invoking Story Writer.....")
+        self.generate_story(context)
+        print("[Producer] Writer Wrote The Story Incredibley!")
 
-        print("-------------------------------------------")
-        print(self.chat.history)
-    
+        print("[Prodcer] Invoking Screenwriter To Create Screenwriting.....")
+        self.screenwriter()
+        print("\n\nScreenwriting:\n{}".format(self.production["generated_screenwriting"]))
+        print("\n\nScreenwriting_JSON:\n{}".format(json.dumps(self.production["screenwriting_json"], indent=4)))
+        print("[Producer] Screenwriting Scenes Are Beautiful!")
 
+        print("[Prodcer] Invoking Scene Artist To Create Scenes.....")
+        self.scene_artist()
+        print("\n\nScenes:\n{}".format(self.production["generated_scenes"]))
+        print("\n\nScenes_JSON:\n{}".format(json.dumps(self.production["scenes_json"], indent=4)))
+        print("[Producer] Screenwriting Scenes Are Beautiful!")
 
+    def scene_artist(self):
+        self.production["scene_artist_prompt"] = self.scene_artist_prompt + self.production["generated_screenwriting"]
+        print("Scene Artist's Prompt:\n",self.production["scene_artist_prompt"])
+        print()
+        self.production["generated_scenes"] = self.model.generate_content(self.production["scene_artist_prompt"]).text
+        self.production["scenes_json"] = json.loads(self.production["generated_scenes"])
+        return self.production["generated_scenes"]
+
+    def screenwriter(self):
+        self.production["screenwriter_prompt"] = self.screenwriter_prompt + self.production["generated_story"]
+        print("Screenwriter's Prompt:\n",self.production["screenwriter_prompt"])
+        print()
+        self.production["generated_screenwriting"] = self.model.generate_content(self.production["screenwriter_prompt"]).text
+        self.production["screenwriting_json"] = json.loads(self.production["generated_screenwriting"])
+        return self.production["generated_screenwriting"]
+
+    def generate_story(self, context):
+        # Generates Story Based on Given Context
+        self.production["story_prompt"] = self.story_prompt + context
+        self.production["generated_story"] = self.model.generate_content(self.production["story_prompt"]).text
+        return self.production["generated_story"]
 
 if __name__ == '__main__':
-    chatbot = GeminiChatbot()
-    chatbot.chatbot()
+    start_time = time.time()
+    # -------------------------------------------------------
+    gemini = GeminiProductions()
+    gemini.producer("Two Chickens Playing Football")
+    # -------------------------------------------------------
+    print("--- %s seconds ---" % (time.time() - start_time))
