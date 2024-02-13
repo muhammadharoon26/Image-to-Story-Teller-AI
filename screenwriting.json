@@ -6,7 +6,7 @@
       "scene_number": 1,
       "location": "INT. HOUSE - DAY",
       "description": "A brief description of the scene's setting and action.",
-      "narrator_script": "A script that narrator will narrate during the scene.",
+      "narrator_script": "A lenghty script that narrator will narrate during the scene. I should be detailed and should have the aspect of story-telling.",
       "scene_details": "Comma-separated tags that visualizes each and every detail of this scene. Also contains story context leading to this scene in detail.",
       "note": "Director's or writer's note about this scene."
     },
@@ -14,7 +14,7 @@
       "scene_number": 2,
       "location": "EXT. PARK - DAY",
       "description": "Description of the setting and what happens in the scene.",
-      "narrator_script": "A script that narrator will narrate during the scene.",
+      "narrator_script": "A lenghty script that narrator will narrate during the scene. I should be detailed and should have the aspect of story-telling.",
       "scene_details": "Comma-separated tags that visualizes each and every detail of this scene. Also contains story context leading to this scene in detail.",
       "note": "Director's or writer's note about this scene."
     }
