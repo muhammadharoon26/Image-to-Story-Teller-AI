@@ -79,7 +79,7 @@ SCREENWRITING JSON:
             "generated_screenwriting": None,
             "screenwriting_json": None,
         }
-        self.model = genai.GenerativeModel('gemini-pro', safety_settings=self.safety_settings, generation_config=self.generation_config)
+        self.model = genai.GenerativeModel('gemini-1.0-pro-latest', safety_settings=self.safety_settings, generation_config=self.generation_config)
 
     def producer(self, context):
         self.production["id"] = uuid.uuid4().hex
@@ -89,7 +89,7 @@ SCREENWRITING JSON:
         self.generate_story(context)
         print("[Producer] Writer Wrote The Story Incredibley!")
 
-        print("[Prodcer] Invoking Screenwriter To Create Screenwriting.....")
+        print("[Producer] Invoking Screenwriter To Create Screenwriting.....")
         self.screenwriter()
         print("\n\nScreenwriting:\n{}".format(self.production["generated_screenwriting"]))
         print("\n\nScreenwriting_JSON:\n{}".format(json.dumps(self.production["screenwriting_json"], indent=4)))
@@ -155,6 +155,6 @@ if __name__ == '__main__':
     start_time = time.time()
     # -------------------------------------------------------
     gemini = GeminiProductions()
-    gemini.producer("Muslim mother teaches her son the importance of Salat")
+    gemini.producer("A computer science student working on an innovaive idea hoping it to be a potential startup.")
     # -------------------------------------------------------
     print("--- %s seconds ---" % (time.time() - start_time))
