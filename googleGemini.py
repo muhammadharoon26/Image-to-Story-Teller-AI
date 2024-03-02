@@ -155,6 +155,6 @@ if __name__ == '__main__':
     start_time = time.time()
     # -------------------------------------------------------
     gemini = GeminiProductions()
-    gemini.producer("A computer science student working on an innovaive idea hoping it to be a potential startup.")
+    gemini.producer("Jeff Bezos and Elon Musk Drug Abuse Problem")
     # -------------------------------------------------------
     print("--- %s seconds ---" % (time.time() - start_time))
