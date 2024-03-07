@@ -12,12 +12,13 @@ from dotenv import load_dotenv, find_dotenv
 
 # Setting up environment variables stored in .env file
 load_dotenv(find_dotenv())
-genai.configure()
 HUGGINFACEHUB_API_TOKEN = os.getenv("HUGGINFACEHUB_API_TOKEN")
 CLIENT_FOLDER = "client/"
+genai.configure()
 
 class GeminiProductions:
     def __init__(self) -> None:
+        # Gemini Confgigurations
         self.generation_config = genai.types.GenerationConfig(
             # Only one candidate for now.
             candidate_count=1,
@@ -31,6 +32,7 @@ class GeminiProductions:
             'SEXUAL':'block_none',
             'DANGEROUS':'block_none',
         }
+        # Prompt Engineering
         self.story_prompt = "You are a Story Teller. You will be given a context and your job will be to generate a 200 word story. Story should be creative, humourous, engaging, interesting and it should have epic plot twists.\nCONTEXT:\n"
         self.screenwriter_prompt = """You are a movie producer. You will be given a story and your job is to convert that story into screenwriting. The screenwriting should be in JSON format and should follow the exact format as specified.
 SCREENWRITING JSON FORMAT:
