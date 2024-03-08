@@ -157,6 +157,6 @@ if __name__ == '__main__':
     start_time = time.time()
     # -------------------------------------------------------
     gemini = GeminiProductions()
-    gemini.producer("Joe biden in Pakistan comedy stage drama")
+    gemini.producer("Joe Biden along with  Nawaz Shariff takes admission in Hogwarts and meets Harry Potter")
     # -------------------------------------------------------
     print("--- %s seconds ---" % (time.time() - start_time))
