@@ -1,5 +1,4 @@
 import google.generativeai as genai
-# import google.ai.generativelanguage as glm
 import time
 import json
 import os
@@ -9,29 +8,26 @@ import uuid
 from PIL import Image
 import shutil
 from dotenv import load_dotenv, find_dotenv
+from gradio_client import Client
 
 # Setting up environment variables stored in .env file
 load_dotenv(find_dotenv())
-# genai.configure(api_key='AIzaSyCL_VqhF0rFuVDpfFWZtaSDH9-j8WmmV6w')
 genai.configure()
 HUGGINFACEHUB_API_TOKEN = os.getenv("HUGGINFACEHUB_API_TOKEN")
 CLIENT_FOLDER = "client/"
 
 class GeminiProductions:
     def __init__(self) -> None:
-        # gemini configs
         self.generation_config = genai.types.GenerationConfig(
-            # Only one candidate for now.
             candidate_count=1,
-            # stop_sequences=['x'],
             max_output_tokens=20000,
             temperature=1.0
         )
         self.safety_settings = {
-            'HARASSMENT':'block_none',
-            'HATE_SPEECH':'block_none',
-            'SEXUAL':'block_none',
-            'DANGEROUS':'block_none',
+            'HARASSMENT': 'block_none',
+            'HATE_SPEECH': 'block_none',
+            'SEXUAL': 'block_none',
+            'DANGEROUS': 'block_none',
         }
         self.story_prompt = "You are a Story Teller. You will be given a context and your job will be to generate a 200 word story. Story should be creative, humourous, engaging, interesting and it should have epic plot twists.\nCONTEXT:\n"
         self.screenwriter_prompt = """You are a movie producer. You will be given a story and your job is to convert that story into screenwriting. The screenwriting should be in JSON format and should follow the exact format as specified.
@@ -85,21 +81,47 @@ SCREENWRITING JSON:
 
     def producer(self, context):
         self.production["id"] = uuid.uuid4().hex
-        print("[Producer] Initiating Production:",self.production["id"])
-
-        print("[Producer] Invoking Story Writer.....")
+        print("[Producer] Initiating Production:", self.production["id"])
         self.generate_story(context)
-        print("[Producer] Writer Wrote The Story Incredibley!")
-
-        print("[Producer] Invoking Screenwriter To Create Screenwriting.....")
         self.screenwriter()
-        print("\n\nScreenwriting:\n{}".format(self.production["generated_screenwriting"]))
-        print("\n\nScreenwriting_JSON:\n{}".format(json.dumps(self.production["screenwriting_json"], indent=4)))
-        print("[Producer] Screenwriting Scenes Are Beautiful!")
-
-        print("[Prodcer] Invoking Scene Artist To Create Scenes.....")
+        print("[Producer] Invoking Scene Artist To Create Scenes.....")
         self.scene_artist()
-        print("[Producer] Generated Scenes Are Beautiful!")
+        self.scene_narrator()
+
+    def generate_story(self, context):
+        self.production["story_prompt"] = self.story_prompt + context
+        self.production["generated_story"] = self.model.generate_content(self.production["story_prompt"]).text
+
+    def screenwriter(self):
+        self.production["screenwriter_prompt"] = self.screenwriter_prompt + self.production["generated_story"]
+        self.production["generated_screenwriting"] = self.model.generate_content(self.production["screenwriter_prompt"]).text
+        self.production["screenwriting_json"] = json.loads(self.production["generated_screenwriting"])
+
+    def scene_narrator(self):
+        directory = self.dir_manager(CLIENT_FOLDER + self.production["id"] + "/")
+        client = Client("https://collabora-whisperspeech.hf.space/",output_dir=directory)
+        
+        for i, scene in enumerate(self.production["screenwriting_json"]["screenplay"], 1):
+            # image_path = directory + f"scene_{i}.png"
+            # self.generate_image(prompt, image_path)
+            narrator_script = scene["narrator_script"]
+            result = client.predict(
+                narrator_script,
+                None,
+                "https://english.voiceoversamples.com/ENG_UK_M_TonyH.mp3",
+                15,
+                api_name="/whisper_speech_demo"
+            )
+            audio_path = directory + f"{i}.wav"
+            self.save_audio_content(result, audio_path)
+
+        # delete redundant folders
+        for item in os.listdir(directory):
+            item_path = os.path.join(directory, item)
+            # Check if the current item is a directory
+            if os.path.isdir(item_path):
+                # Remove the directory and its contents
+                shutil.rmtree(item_path)
 
     def scene_artist(self):
         while True:
@@ -120,43 +142,39 @@ SCREENWRITING JSON:
             except Exception as e:
                 print("[Scene-Artist][Retrying...][Error]:{}".format(str(e).split('\n')[0]))
 
-    def screenwriter(self):
-        while True:
-            try:
-                self.production["screenwriter_prompt"] = self.screenwriter_prompt + self.production["generated_story"]
-                print("Screenwriter's Prompt:\n",self.production["screenwriter_prompt"])
-                print()
-                self.production["generated_screenwriting"] = self.model.generate_content(self.production["screenwriter_prompt"]).text
-                self.production["screenwriting_json"] = json.loads(self.production["generated_screenwriting"])
-                return self.production["generated_screenwriting"]
-            except Exception as e:
-                print("[Screenwriter][Retrying...][Error]:{}".format(str(e).split('\n')[0]))
+    def generate_image(self, prompt, image_path):
+        API_URL = "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0"
+        headers = {"Authorization": f"Bearer {HUGGINFACEHUB_API_TOKEN}"}
+        response = requests.post(API_URL, headers=headers, json={"inputs": prompt})
+        if response.status_code == 200:
+            image = Image.open(io.BytesIO(response.content))
+            image.save(image_path)
+            print(f"Image saved to {image_path}")
+        else:
+            print(f"Failed to generate image: {response.text}")
 
-    def generate_story(self, context):
-        while True:
+    def save_audio_content(self, result, audio_path):
+        if os.path.isfile(result):
+            # If result is a local file path, copy the file
             try:
-                # Generates Story Based on Given Context
-                self.production["story_prompt"] = self.story_prompt + context
-                self.production["generated_story"] = self.model.generate_content(self.production["story_prompt"]).text
-                return self.production["generated_story"]
+                shutil.copy(result, audio_path)
+                print(f"Audio file copied to {audio_path}")
             except Exception as e:
-                print("[Story-Writer][Retrying...][Error]:{}".format(str(e).split('\n')[0]))
+                print(f"Failed to copy audio file: {e}")
+        else:
+            print(f"Unexpected audio content type or path: {result}")
 
-    def dir_manager(self, dir):
-        if os.path.exists(dir):
-            shutil.rmtree(dir)
-        os.makedirs(dir)
-        return dir
-    
+    def dir_manager(self, dir_path):
+        if not os.path.exists(dir_path):
+            # shutil.rmtree(dir_path)
+            os.makedirs(dir_path)
+        return dir_path
     def save_json(self, json_obj, path):
         with open(path, 'w') as outfile:
             json.dump(json_obj, outfile, indent=4)
-        
 
 if __name__ == '__main__':
     start_time = time.time()
-    # -------------------------------------------------------
     gemini = GeminiProductions()
-    gemini.producer("Joe Biden smoking weed with snoop dog")
-    # -------------------------------------------------------
+    gemini.producer("Joe Biden in Afghanistan")
     print("--- %s seconds ---" % (time.time() - start_time))
