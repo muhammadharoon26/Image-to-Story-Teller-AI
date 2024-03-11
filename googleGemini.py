@@ -361,6 +361,6 @@ if __name__ == '__main__':
     start_time = time.time()
     # -------------------------------------------------------
     gemini = GeminiProductions()
-    gemini.producer("Elon Musk pitching his new company idea on shark tank show. Very hilarious comedy while elon throws some shade on other rival billioniare. Elon discusses why he didn't visited India to attend Ambani's son marraige.")
+    gemini.producer("Story of DB Cooper")
     # -------------------------------------------------------
     print("--- %s seconds ---" % (time.time() - start_time))
