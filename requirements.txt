@@ -1,0 +1,6 @@
+google-generativeai
+gradio_client
+moviepy
+openai-whisper
+opencv-python
+tqdm

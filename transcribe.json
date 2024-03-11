@@ -1,0 +1,444 @@
+{
+  "text": " The air crackles with anticipation as chuckles takes the stage. His infectious grin lighting up the room. With a mic in his hand, he unravels a tapestry of knee-slapping jokes, each punchline eliciting a thunderous roar of laughter from the audience. Fate, however, has a mischievous plan in store. Chuckles feet find an unexpected foe in a robe banal appeal. With an unceremonious slip, he goes sprawling across the stage, sending shockwaves of laughter through the audience. In the face of this comedic catastrophe, Chuckles instincts kick into gear. With lightning fast wit, he seizes the moment and quits. My peel formats seem to have slipped, but my dignity is still holding. By a thread, the audience erupts in a wave of laughter. Their spirits lift it by his self-deprecating humour. As the laughter subsides, fate throws another curveball. Chuckles' frantic search for his feet leads him into an unexpected entanglement. His wig, the very essence of his comedic persona, becomes ensnared in microphone stand. With the grace of a seasoned performer, Chuckles doesn't miss a beat. In a flash of inspiration, he angsts off the wig and proclaims, Yes, I've found my hair, apparent. The audience responds with a thunderous roar, their laughter reaching new heights. As the laughter continues, fate takes one final dramatic turn. A loose stage light, threatening to crash down on Chuckles, becomes the next hotel in this comedic escapade. With the reflexes of a seasoned performer, he nimbley dodges the falling light, sending the audience into a frenzy of hysterics. With the chaos subsiding, Chuckles delivers the perfect comedic crescendo. As he takes a final bow, he quits. Chuckles' l like I'm going to have to shed some light on this situation. The audience erupts in one last burst of laughter. Their spirits, lifted by the rollercoaster of emotions, they've just witnessed.",
+  "segments": [
+    {
+      "id": 0,
+      "seek": 0,
+      "start": 0.0,
+      "end": 4.4,
+      "text": " The air crackles with anticipation as chuckles takes the stage.",
+      "tokens": [
+        50364, 440, 1988, 6226, 904, 365, 35979, 382, 29151, 2516, 264, 3233,
+        13, 50584
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.17017919509137264,
+      "compression_ratio": 1.644927536231884,
+      "no_speech_prob": 0.00522479647770524
+    },
+    {
+      "id": 1,
+      "seek": 0,
+      "start": 4.4,
+      "end": 7.32,
+      "text": " His infectious grin lighting up the room.",
+      "tokens": [50584, 2812, 26780, 49179, 9577, 493, 264, 1808, 13, 50730],
+      "temperature": 0.0,
+      "avg_logprob": -0.17017919509137264,
+      "compression_ratio": 1.644927536231884,
+      "no_speech_prob": 0.00522479647770524
+    },
+    {
+      "id": 2,
+      "seek": 0,
+      "start": 7.32,
+      "end": 13.64,
+      "text": " With a mic in his hand, he unravels a tapestry of knee-slapping jokes, each punchline eliciting",
+      "tokens": [
+        50730, 2022, 257, 3123, 294, 702, 1011, 11, 415, 40507, 82, 257, 5119,
+        47433, 295, 9434, 12, 10418, 10534, 14439, 11, 1184, 8135, 1889, 806,
+        299, 1748, 51046
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.17017919509137264,
+      "compression_ratio": 1.644927536231884,
+      "no_speech_prob": 0.00522479647770524
+    },
+    {
+      "id": 3,
+      "seek": 0,
+      "start": 13.64,
+      "end": 16.76,
+      "text": " a thunderous roar of laughter from the audience.",
+      "tokens": [
+        51046, 257, 19898, 563, 40347, 295, 13092, 490, 264, 4034, 13, 51202
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.17017919509137264,
+      "compression_ratio": 1.644927536231884,
+      "no_speech_prob": 0.00522479647770524
+    },
+    {
+      "id": 4,
+      "seek": 0,
+      "start": 16.76,
+      "end": 20.28,
+      "text": " Fate, however, has a mischievous plan in store.",
+      "tokens": [
+        51202, 40900, 11, 4461, 11, 575, 257, 3346, 339, 42111, 1393, 294, 3531,
+        13, 51378
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.17017919509137264,
+      "compression_ratio": 1.644927536231884,
+      "no_speech_prob": 0.00522479647770524
+    },
+    {
+      "id": 5,
+      "seek": 0,
+      "start": 20.28,
+      "end": 24.560000000000002,
+      "text": " Chuckles feet find an unexpected foe in a robe banal appeal.",
+      "tokens": [
+        51378, 761, 9193, 3521, 915, 364, 13106, 726, 68, 294, 257, 37213, 5643,
+        304, 13668, 13, 51592
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.17017919509137264,
+      "compression_ratio": 1.644927536231884,
+      "no_speech_prob": 0.00522479647770524
+    },
+    {
+      "id": 6,
+      "seek": 0,
+      "start": 24.560000000000002,
+      "end": 29.96,
+      "text": " With an unceremonious slip, he goes sprawling across the stage, sending shockwaves of laughter",
+      "tokens": [
+        51592, 2022, 364, 6219, 323, 3317, 851, 11140, 11, 415, 1709, 22734,
+        1688, 2108, 264, 3233, 11, 7750, 5588, 86, 5423, 295, 13092, 51862
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.17017919509137264,
+      "compression_ratio": 1.644927536231884,
+      "no_speech_prob": 0.00522479647770524
+    },
+    {
+      "id": 7,
+      "seek": 2996,
+      "start": 29.96,
+      "end": 31.32,
+      "text": " through the audience.",
+      "tokens": [50364, 807, 264, 4034, 13, 50432],
+      "temperature": 0.0,
+      "avg_logprob": -0.21200048006497896,
+      "compression_ratio": 1.5193798449612403,
+      "no_speech_prob": 0.0018316052155569196
+    },
+    {
+      "id": 8,
+      "seek": 2996,
+      "start": 31.32,
+      "end": 36.480000000000004,
+      "text": " In the face of this comedic catastrophe, Chuckles instincts kick into gear.",
+      "tokens": [
+        50432, 682, 264, 1851, 295, 341, 18418, 299, 36043, 11, 761, 9193,
+        38997, 4437, 666, 7394, 13, 50690
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.21200048006497896,
+      "compression_ratio": 1.5193798449612403,
+      "no_speech_prob": 0.0018316052155569196
+    },
+    {
+      "id": 9,
+      "seek": 2996,
+      "start": 36.480000000000004,
+      "end": 40.160000000000004,
+      "text": " With lightning fast wit, he seizes the moment and quits.",
+      "tokens": [
+        50690, 2022, 16589, 2370, 32161, 11, 415, 369, 5660, 264, 1623, 293,
+        421, 1208, 13, 50874
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.21200048006497896,
+      "compression_ratio": 1.5193798449612403,
+      "no_speech_prob": 0.0018316052155569196
+    },
+    {
+      "id": 10,
+      "seek": 2996,
+      "start": 40.160000000000004,
+      "end": 45.08,
+      "text": " My peel formats seem to have slipped, but my dignity is still holding.",
+      "tokens": [
+        50874, 1222, 13889, 25879, 1643, 281, 362, 28989, 11, 457, 452, 19672,
+        307, 920, 5061, 13, 51120
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.21200048006497896,
+      "compression_ratio": 1.5193798449612403,
+      "no_speech_prob": 0.0018316052155569196
+    },
+    {
+      "id": 11,
+      "seek": 2996,
+      "start": 45.08,
+      "end": 48.84,
+      "text": " By a thread, the audience erupts in a wave of laughter.",
+      "tokens": [
+        51120, 3146, 257, 7207, 11, 264, 4034, 20999, 39280, 294, 257, 5772,
+        295, 13092, 13, 51308
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.21200048006497896,
+      "compression_ratio": 1.5193798449612403,
+      "no_speech_prob": 0.0018316052155569196
+    },
+    {
+      "id": 12,
+      "seek": 2996,
+      "start": 48.84,
+      "end": 52.44,
+      "text": " Their spirits lift it by his self-deprecating humour.",
+      "tokens": [
+        51308, 6710, 16388, 5533, 309, 538, 702, 2698, 12, 19929, 13867, 990,
+        45138, 13, 51488
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.21200048006497896,
+      "compression_ratio": 1.5193798449612403,
+      "no_speech_prob": 0.0018316052155569196
+    },
+    {
+      "id": 13,
+      "seek": 2996,
+      "start": 52.44,
+      "end": 56.480000000000004,
+      "text": " As the laughter subsides, fate throws another curveball.",
+      "tokens": [
+        51488, 1018, 264, 13092, 2090, 1875, 11, 12738, 19251, 1071, 7605, 3129,
+        13, 51690
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.21200048006497896,
+      "compression_ratio": 1.5193798449612403,
+      "no_speech_prob": 0.0018316052155569196
+    },
+    {
+      "id": 14,
+      "seek": 5648,
+      "start": 56.48,
+      "end": 61.44,
+      "text": " Chuckles' frantic search for his feet leads him into an unexpected entanglement.",
+      "tokens": [
+        50364, 761, 9193, 6, 431, 7128, 3164, 337, 702, 3521, 6689, 796, 666,
+        364, 13106, 948, 656, 3054, 13, 50612
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.17614472129128195,
+      "compression_ratio": 1.5613382899628252,
+      "no_speech_prob": 0.057929396629333496
+    },
+    {
+      "id": 15,
+      "seek": 5648,
+      "start": 61.44,
+      "end": 67.32,
+      "text": " His wig, the very essence of his comedic persona, becomes ensnared in microphone stand.",
+      "tokens": [
+        50612, 2812, 24094, 11, 264, 588, 12801, 295, 702, 18418, 299, 12184,
+        11, 3643, 3489, 77, 1642, 294, 10952, 1463, 13, 50906
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.17614472129128195,
+      "compression_ratio": 1.5613382899628252,
+      "no_speech_prob": 0.057929396629333496
+    },
+    {
+      "id": 16,
+      "seek": 5648,
+      "start": 67.32,
+      "end": 71.64,
+      "text": " With the grace of a seasoned performer, Chuckles doesn't miss a beat.",
+      "tokens": [
+        50906, 2022, 264, 10042, 295, 257, 30111, 30248, 11, 761, 9193, 1177,
+        380, 1713, 257, 4224, 13, 51122
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.17614472129128195,
+      "compression_ratio": 1.5613382899628252,
+      "no_speech_prob": 0.057929396629333496
+    },
+    {
+      "id": 17,
+      "seek": 5648,
+      "start": 71.64,
+      "end": 75.36,
+      "text": " In a flash of inspiration, he angsts off the wig and proclaims,",
+      "tokens": [
+        51122, 682, 257, 7319, 295, 10249, 11, 415, 2562, 372, 82, 766, 264,
+        24094, 293, 34604, 82, 11, 51308
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.17614472129128195,
+      "compression_ratio": 1.5613382899628252,
+      "no_speech_prob": 0.057929396629333496
+    },
+    {
+      "id": 18,
+      "seek": 5648,
+      "start": 75.36,
+      "end": 78.8,
+      "text": " Yes, I've found my hair, apparent.",
+      "tokens": [
+        51308, 1079, 11, 286, 600, 1352, 452, 2578, 11, 18335, 13, 51480
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.17614472129128195,
+      "compression_ratio": 1.5613382899628252,
+      "no_speech_prob": 0.057929396629333496
+    },
+    {
+      "id": 19,
+      "seek": 5648,
+      "start": 78.8,
+      "end": 83.88,
+      "text": " The audience responds with a thunderous roar, their laughter reaching new heights.",
+      "tokens": [
+        51480, 440, 4034, 27331, 365, 257, 19898, 563, 40347, 11, 641, 13092,
+        9906, 777, 25930, 13, 51734
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.17614472129128195,
+      "compression_ratio": 1.5613382899628252,
+      "no_speech_prob": 0.057929396629333496
+    },
+    {
+      "id": 20,
+      "seek": 8388,
+      "start": 83.88,
+      "end": 88.6,
+      "text": " As the laughter continues, fate takes one final dramatic turn.",
+      "tokens": [
+        50364, 1018, 264, 13092, 6515, 11, 12738, 2516, 472, 2572, 12023, 1261,
+        13, 50600
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.14422420154918325,
+      "compression_ratio": 1.653225806451613,
+      "no_speech_prob": 0.030240079388022423
+    },
+    {
+      "id": 21,
+      "seek": 8388,
+      "start": 88.6,
+      "end": 93.75999999999999,
+      "text": " A loose stage light, threatening to crash down on Chuckles, becomes the next hotel in",
+      "tokens": [
+        50600, 316, 9612, 3233, 1442, 11, 20768, 281, 8252, 760, 322, 761, 9193,
+        11, 3643, 264, 958, 7622, 294, 50858
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.14422420154918325,
+      "compression_ratio": 1.653225806451613,
+      "no_speech_prob": 0.030240079388022423
+    },
+    {
+      "id": 22,
+      "seek": 8388,
+      "start": 93.75999999999999,
+      "end": 95.75999999999999,
+      "text": " this comedic escapade.",
+      "tokens": [50858, 341, 18418, 299, 785, 9485, 762, 13, 50958],
+      "temperature": 0.0,
+      "avg_logprob": -0.14422420154918325,
+      "compression_ratio": 1.653225806451613,
+      "no_speech_prob": 0.030240079388022423
+    },
+    {
+      "id": 23,
+      "seek": 8388,
+      "start": 95.75999999999999,
+      "end": 100.88,
+      "text": " With the reflexes of a seasoned performer, he nimbley dodges the falling light, sending",
+      "tokens": [
+        50958, 2022, 264, 23802, 279, 295, 257, 30111, 30248, 11, 415, 24887,
+        638, 88, 13886, 2880, 264, 7440, 1442, 11, 7750, 51214
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.14422420154918325,
+      "compression_ratio": 1.653225806451613,
+      "no_speech_prob": 0.030240079388022423
+    },
+    {
+      "id": 24,
+      "seek": 8388,
+      "start": 100.88,
+      "end": 103.67999999999999,
+      "text": " the audience into a frenzy of hysterics.",
+      "tokens": [
+        51214, 264, 4034, 666, 257, 33596, 1229, 295, 35915, 1167, 13, 51354
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.14422420154918325,
+      "compression_ratio": 1.653225806451613,
+      "no_speech_prob": 0.030240079388022423
+    },
+    {
+      "id": 25,
+      "seek": 8388,
+      "start": 103.67999999999999,
+      "end": 108.75999999999999,
+      "text": " With the chaos subsiding, Chuckles delivers the perfect comedic crescendo.",
+      "tokens": [
+        51354, 2022, 264, 14158, 2090, 2819, 11, 761, 9193, 24860, 264, 2176,
+        18418, 299, 20964, 33199, 13, 51608
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.14422420154918325,
+      "compression_ratio": 1.653225806451613,
+      "no_speech_prob": 0.030240079388022423
+    },
+    {
+      "id": 26,
+      "seek": 8388,
+      "start": 108.75999999999999,
+      "end": 111.56,
+      "text": " As he takes a final bow, he quits.",
+      "tokens": [
+        51608, 1018, 415, 2516, 257, 2572, 4503, 11, 415, 421, 1208, 13, 51748
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.14422420154918325,
+      "compression_ratio": 1.653225806451613,
+      "no_speech_prob": 0.030240079388022423
+    },
+    {
+      "id": 27,
+      "seek": 11156,
+      "start": 111.56,
+      "end": 116.72,
+      "text": " Chuckles' l like I'm going to have to shed some light on this situation.",
+      "tokens": [
+        50364, 761, 9193, 6, 287, 411, 286, 478, 516, 281, 362, 281, 14951, 512,
+        1442, 322, 341, 2590, 13, 50622
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.28808007150326137,
+      "compression_ratio": 1.3533333333333333,
+      "no_speech_prob": 0.35641586780548096
+    },
+    {
+      "id": 28,
+      "seek": 11156,
+      "start": 116.72,
+      "end": 120.08,
+      "text": " The audience erupts in one last burst of laughter.",
+      "tokens": [
+        50622, 440, 4034, 20999, 39280, 294, 472, 1036, 12712, 295, 13092, 13,
+        50790
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.28808007150326137,
+      "compression_ratio": 1.3533333333333333,
+      "no_speech_prob": 0.35641586780548096
+    },
+    {
+      "id": 29,
+      "seek": 11156,
+      "start": 120.08,
+      "end": 124.16,
+      "text": " Their spirits, lifted by the rollercoaster of emotions, they've just witnessed.",
+      "tokens": [
+        50790, 6710, 16388, 11, 17854, 538, 264, 15948, 1291, 1727, 295, 8462,
+        11, 436, 600, 445, 21519, 13, 50994
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.28808007150326137,
+      "compression_ratio": 1.3533333333333333,
+      "no_speech_prob": 0.35641586780548096
+    }
+  ],
+  "language": "en"
+}
